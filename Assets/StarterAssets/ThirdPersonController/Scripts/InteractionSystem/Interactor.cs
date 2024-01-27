@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour
             _interactable = _colliders[0].GetComponent<IInteractable>();
             if (_interactable != null)
             {
-                if (_interactionPromptUI.IsDisplayer) _interactionPromptUI.SetUp(_interactable.InteractionPrompt);
+                if (!_interactionPromptUI.IsDisplayed) _interactionPromptUI.SetUp(_interactable.InteractionPrompt);
 
                 if (Keyboard.current.eKey.wasPressedThisFrame) _interactable.Interact(this);
             }
@@ -34,7 +34,7 @@ public class Interactor : MonoBehaviour
         else
         {
             if (_interactable != null) _interactable = null;
-            if (_interactionPromptUI.IsDisplayer) _interactionPromptUI.Close();
+            if (_interactionPromptUI.IsDisplayed) _interactionPromptUI.Close();
         }
 
     }

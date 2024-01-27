@@ -17,20 +17,20 @@ public class InteractionPromptUI : MonoBehaviour
     private void LateUpdate()
     {
         var rotation = _mainCam.transform.rotation;
-        transform.LookAt(transform.position + rotation * Vector3.forward, rotation*Vector3.up);
+        transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
     }
 
-    public bool IsDisplayer = false;
+    public bool IsDisplayed = false;
     public void SetUp(string promptText)
     {
         _promptText.text = promptText;
         _uiPanel.SetActive(true);
-        IsDisplayer = true;
+        IsDisplayed = true;
     }
 
     public void Close()
     {
         _uiPanel.SetActive(false);
-        IsDisplayer=false;
+        IsDisplayed = false;
     }
 }
