@@ -6,18 +6,21 @@ public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
     [SerializeField] GameObject player;
-    [SerializeField] private CharacterController _controller;
-
     public string InteractionPrompt => _prompt;
-    /*public Vector3 destinationPosition = new Vector3(-10, 0.2f, -158.24f);*/
-
+    private Vector3 posIn = new Vector3(-14f, 0.18f, -165.62f);
+    private Vector3 posOut = new Vector3(-5.18f, 0.1f, -158.24f);
     public bool Interact(Interactor interactor)
     {
-        Debug.Log("toto !");
-
-        _controller.enabled = false;
-        player.transform.position = new Vector3(-14f, 0.18f, -165.62f);
-        _controller.enabled = true;
+        player.GetComponent<CharacterController>().enabled = false;
+        if (player.transform.position.z < -164f)
+        {
+            player.transform.position = posOut;
+        }
+        else
+        {
+            player.transform.position = posIn;
+        }
+        player.GetComponent<CharacterController>().enabled = true;
 
         return true;
     }
