@@ -7537,6 +7537,11 @@ PrefabInstance:
       propertyPath: GroundLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918491, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8858,8 +8863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d022d3b03f9c2ae4483d951b1c84527e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: 
-  destinationPosition: {x: -1.118, y: 0, z: -0.056}
 --- !u!1 &2018087419
 GameObject:
   m_ObjectHideFlags: 0
