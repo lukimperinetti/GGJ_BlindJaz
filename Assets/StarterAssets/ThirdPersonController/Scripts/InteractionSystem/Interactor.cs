@@ -18,6 +18,8 @@ public class Interactor : MonoBehaviour
 
     private IInteractable _interactable;
 
+    public object Character { get; internal set; }
+
     private void Update()
     {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
