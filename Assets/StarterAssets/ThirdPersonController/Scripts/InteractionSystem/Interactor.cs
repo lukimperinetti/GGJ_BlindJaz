@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Classe représentant un interactor dans le jeu.
@@ -17,6 +18,15 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         _numFund = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
+        if (_numFund > 0)
+        {
+            var interactable = _colliders[0].GetComponent<IInteractable>();
+            if (interactable != null && Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                interactable.Interact(this);
+            }
+        }
+
     }
 
     private void OnDrawGizmos()
