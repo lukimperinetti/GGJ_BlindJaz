@@ -10,6 +10,7 @@ public class sketch_perfomance : MonoBehaviour, IInteractable
     [SerializeField] private CharacterManager player;
     [SerializeField] private AIPackage.DayAndNightControl dayAndNightControl;
     [SerializeField] private PopUpMessage popUpMessage;
+    [SerializeField] private Fade fade;
 
     public bool Interact(Interactor interactor)
     {
@@ -18,6 +19,7 @@ public class sketch_perfomance : MonoBehaviour, IInteractable
             popUpMessage.showMessage("You are too tired to perform", 3);
             return false;
         }
+        fade.FadeIn();
         player.fatigue += 10;
         player.reputation += 10;
         player.money += 10;
@@ -25,5 +27,4 @@ public class sketch_perfomance : MonoBehaviour, IInteractable
 
         return true;
     }
-
 }
