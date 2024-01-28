@@ -31,6 +31,7 @@ public class Fade : MonoBehaviour
 
     public void FadeIn()
     {
-        fadeIn = true;
+        if (!fadeIn && !fadeOut)
+            fadeIn = true;
     }
 }
