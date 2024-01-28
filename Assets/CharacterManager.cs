@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour
     public int reputation = 0;
     public int reputationLevel = 0;
     public int money = 0;
+    [SerializeField] private ReputationLvlText reputationLvlText;
 
     public void Update()
     {
@@ -20,6 +21,7 @@ public class CharacterManager : MonoBehaviour
         {
             reputationLevel++;
             reputation = 0;
+            reputationLvlText.setLvl(reputationLevel);
         }
     }
 
