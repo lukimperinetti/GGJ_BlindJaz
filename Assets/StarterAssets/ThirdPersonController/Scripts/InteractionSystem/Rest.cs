@@ -14,6 +14,7 @@ public class Rest : MonoBehaviour, IInteractable
     private bool fadeOut = false;
     [SerializeField] private PopUpMessage popUpMessage;
     [SerializeField] private PopUpMessageFatigue popUpMessageFatigue;
+    [SerializeField] private PopUpMessageTime popUpMessageTime;
 
     private void Update()
     {
@@ -62,10 +63,10 @@ public class Rest : MonoBehaviour, IInteractable
 
     private void IncrementeStats()
     {
-        popUpMessageFatigue.showMessage("+" + player.fatigue.ToString(), 2);
-        player.fatigue = 0;
+        player.rest();
         popUpMessage.showMessage("You are well rested", 3);
         dayAndNightControl.currentTime += 0.3f;
+        popUpMessageTime.showMessage("+7h", 2);
     }
 
 }

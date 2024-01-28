@@ -11,6 +11,6 @@ public class SetCurrentMoney : MonoBehaviour
     void Update()
     {
         displmayMoney = GetComponent<Text>();
-        displmayMoney.text = player.money.ToString() + " $";
+        displmayMoney.text = player.getMoney().ToString() + " $";
     }
 }
