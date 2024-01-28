@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonNext : MonoBehaviour
 {
     public GameObject im1;
     public GameObject im2;
     public GameObject im3;
+    public Button yourButton;
 
     public GameObject canvasImageGameObject; // Reference to the GameObject with the Image component
     private Image canvasImage; // Reference to the Image component on the Canvas
@@ -13,6 +15,8 @@ public class ButtonNext : MonoBehaviour
 
     private void Start()
     {
+        Button btn = yourButton.GetComponent<Button>();
+		btn.onClick.AddListener(OnButtonClick); // Calls the OnButtonClick method when you click the Button
         canvasImage = canvasImageGameObject.GetComponent<Image>(); // Get the Image component
         im2.SetActive(false); // Disable im2 at the start
         im3.SetActive(false); // Disable im3 at the start
