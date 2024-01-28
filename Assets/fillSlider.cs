@@ -14,10 +14,10 @@ public class fillSlider : MonoBehaviour
         switch (Id)
         {
             case 0:
-                GetComponent<UnityEngine.UI.Slider>().value = 1 - player.fatigue / 100f;
+                GetComponent<UnityEngine.UI.Slider>().value = 1 - player.getFatigue() / 100f;
                 break;
             case 1:
-                GetComponent<UnityEngine.UI.Slider>().value = (float)(player.reputation / (Math.Pow(2, player.reputationLevel))) / 100f;
+                GetComponent<UnityEngine.UI.Slider>().value = (float)(player.getReputation() / (Math.Pow(2, player.getReputationLevel()))) / 100f;
                 break;
         }
     }

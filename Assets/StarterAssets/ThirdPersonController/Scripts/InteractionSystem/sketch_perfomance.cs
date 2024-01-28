@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class sketch_perfomance : MonoBehaviour, IInteractable
 {
+    public int id;
     [SerializeField] private string _prompt;
     public string InteractionPrompt => _prompt;
     [SerializeField] private CharacterManager player;
     [SerializeField] private AIPackage.DayAndNightControl dayAndNightControl;
     [SerializeField] private PopUpMessage popUpMessage;
+    [SerializeField] private PopUpMessageTime popUpMessageTime;
     [SerializeField] private Image fade;
     private bool fadeIn = false;
     private bool fadeOut = false;
@@ -29,16 +31,41 @@ public class sketch_perfomance : MonoBehaviour, IInteractable
 
     public bool Interact(Interactor interactor)
     {
-        if (player.fatigue >= 90)
+        if (player.getFatigue() >= 90)
         {
             popUpMessage.showMessage("You are too tired to perform", 3);
             return false;
         }
-        if (!fadeIn && !fadeOut)
+        switch (id)
         {
-            fadeIn = true;
-            player.GetComponent<CharacterController>().enabled = false;
+            case 0:
+                if (!fadeIn && !fadeOut)
+                {
+                    fadeIn = true;
+                    player.GetComponent<CharacterController>().enabled = false;
+                }
+                break;
+            case 1:
+                if (player.getReputationLevel() < 1)
+                {
+                    popUpMessage.showMessage("You need to be at least level 1 to perform here", 3);
+                }
+                else if (dayAndNightControl.currentTime >= 0.08f && dayAndNightControl.currentTime <= 0.73f)
+                {
+                    popUpMessage.showMessage("Comedie club not open yet. Come back between 18h and 2h", 3);
+                    return false;
+                }
+                else
+                {
+                    if (!fadeIn && !fadeOut)
+                    {
+                        fadeIn = true;
+                        player.GetComponent<CharacterController>().enabled = false;
+                    }
+                }
+                break;
         }
+
 
         return true;
     }
@@ -67,9 +94,22 @@ public class sketch_perfomance : MonoBehaviour, IInteractable
 
     private void IncrementeStats()
     {
-        player.fatigue += 10;
-        player.reputation += 10;
-        player.money += 10;
-        dayAndNightControl.currentTime += 0.2f;
+        switch (id)
+        {
+            case 0:
+                player.addFatigue(20);
+                player.addReputation(10);
+                player.addMoney(Random.Range(10, 20));
+                dayAndNightControl.currentTime += 0.2f;
+                popUpMessageTime.showMessage("+5h", 2);
+                break;
+            case 1:
+                player.addFatigue(10);
+                player.addReputation(20);
+                dayAndNightControl.currentTime += 0.08f;
+                popUpMessageTime.showMessage("+2h", 2);
+                break;
+
+        }
     }
 }
